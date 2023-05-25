@@ -18,11 +18,11 @@ public:
             if(l1==NULL) return l2;
             if(l2==NULL) return l1;
             if(l1->val > l2->val) std::swap(l1,l2);
-            ListNode*res=l1;
+            ListNode*res=l1;//if(l1->val > l2->val)
             while(l1 != NULL && l2 !=NULL)
             {
                 ListNode*temp = NULL ; 
-                while(l1 !=NULL && l1->val <=l2->val)
+                while(l1 !=NULL && l1->val <=l2->val)//Refer notes : Keep l1++ till l1<l2.
                 {
                     temp = l1;
                     l1=l1->next;
