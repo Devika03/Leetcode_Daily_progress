@@ -1,13 +1,14 @@
 class LRUCache
 {
     public:
-        class node{
+        class node//We are defining the node structure. 
+        {
             public:
             int key;
             int val;
             node*next;
             node*prev;
-            node(int _key, int _value)
+            node(int _key, int _value)//Self constructor node(key,value)
             {
                 key= _key;
                 val= _value;
@@ -19,7 +20,7 @@ class LRUCache
     int max_cap;
     unordered_map<int,node*>m;//int , Address is stored. 
     
-    LRUCache(int capacity)//Initial config. 
+    LRUCache(int capacity)//Here , We contruct the LRUCache Data structure( i.e. connecting head to tail. )
     {
         max_cap=capacity;
         head->next=tail;
@@ -29,18 +30,19 @@ class LRUCache
     void addnode(node* newnode)
     {
         node* temp = head->next;
-        newnode->next = temp;
+        newnode->next = temp;//head's next now will be newnode's next. 
         newnode->prev = head;
         head->next = newnode;
         temp->prev = newnode;
     }
     void deletenode(node* delnode)
     {
-        node*delprev = delnode->prev;
-        node*delnext= delnode->next;
+        node*delprev = delnode->prev;//Stored. 
+        node*delnext= delnode->next;//Stored. 
         delprev->next= delnext;
         delnext->prev = delprev;
     }
+    
     int get(int key_)
     {
        if (m.find(key_) != m.end())//I.e it exists in the map. 
