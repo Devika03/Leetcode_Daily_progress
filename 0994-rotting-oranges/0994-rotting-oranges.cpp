@@ -1,65 +1,55 @@
 class Solution {
-
-private:
-    int bfs(queue<pair<int, int>> que, vector<vector<int>> &grid, int r[], int c[]){
-        int time = 0;
-        int n = grid.size();
-        int m = grid[0].size();
-        while(!que.empty()){
-            int size = que.size();
-            bool isRotten = false;  // if rotten oranges can't rotten any oranges
-
-            for(int i=0; i<size; i++){
-                int row = que.front().first;
-                int col = que.front().second;
-
-                que.pop();
-
-                for(int i=0; i<4; i++){
-                    int nr = row + r[i];
-                    int nc = col + c[i];
-
-                    if(nr>=0 && nr<n && nc>=0 && nc<m && grid[nr][nc] == 1){
-                        isRotten = true;
-                        grid[nr][nc] = 2;
-                        que.push({nr,nc});
-                    } 
-                }
-            }
-
-            if(isRotten) time++;
-        }
-
-        return time;
-    }
-
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        queue<pair<int, int>> que;
+        queue<pair<pair<int,int>,int>> q;//Co.od , time .
+        int fresh = 0 , afterfresh = 0; 
         int n = grid.size();
         int m = grid[0].size();
+        vector<vector<int>> vis (n,vector<int>(m,0));
 
-        // checking the rotten oranges in the grid the pushing it to que
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(grid[i][j] == 2){
-                    que.push({i,j});
+        for(int i =0;i<n;i++)
+        {
+            for(int j = 0; j<m;j++)
+            {
+                if(grid[i][j]==2)//All rotten oranges are pushed to q. 
+                {
+                    q.push({{i,j},0});
+                    vis[i][j]=2;
                 }
+                 if(grid[i][j]==1)//If not 2 then it is fresh. 
+                 fresh++;
             }
         }
 
-        int r[4] = {-1, 1, 0, 0};
-        int c[4] = {0, 0, -1, 1}; 
+        int drow[4] = {-1,0,1,0};
+        int dcol[4] = {0,1,0,-1};
+        int time = 0; 
+        int res = 0; 
 
-        int rottenTime = bfs(que, grid, r, c);
+        while(!q.empty() ){
 
-        // checking if any not rotten oranges left, if yes then returning -1
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(grid[i][j] == 1) return -1;
+            int row = q.front().first.first;
+            int col = q.front().first.second;
+            int t = q.front().second;
+            res = max(res,t);
+            q.pop();
+            for(int i = 0; i<4;i++){
+                int r = row + drow[i];//We are  appending and reaching the neighbors. 
+                int c = col + dcol[i];
+                if(r>=0 && r<n && c>=0 && c<m && grid[r][c]==1 && vis[r][c]==0) //We are checking the neighbors if they are eligible to be pushed into the queue. 
+                {
+                    q.push({{r,c},t+1});
+                    vis[r][c]=2;
+                    afterfresh++;
+                }
+
             }
-        }
 
-        return rottenTime;
-    }
-};
+
+
+        }
+            if(fresh!=afterfresh)
+            return -1;
+            return res;
+
+        return res;}};
