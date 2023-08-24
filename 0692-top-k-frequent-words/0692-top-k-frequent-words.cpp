@@ -2,7 +2,7 @@ class Solution {
     static bool cmp(pair<string,int>p1 ,pair<string,int>p2)
     {
         if(p1.second > p2.second || p1.second==p2.second && p1.first< p2.first/*Lexico. check*/)
-        return true;
+        return true;//It means p1 and p2 are in correct position . No interchange reqd. 
         return false;
     }
 public:
