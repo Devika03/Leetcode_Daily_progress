@@ -22,12 +22,12 @@ public:
 class Solution {
 public:
     int triangularSum(vector<int>& nums) {
-        int n=nums.size();
+        int n=nums.size();//Doing it in-place.
         while(n!=1){
             for(int i=0;i<n-1;i++){
                 nums[i]=(nums[i]+nums[i+1])%10;
             }
-            n--;
+            n--; // Array size decreases 1 by 1. 
         }
         return nums[0];
     }
