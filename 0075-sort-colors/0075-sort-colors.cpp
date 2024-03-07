@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void sortColors(vector<int>& nums) 
+    void sortColors(vector<int>& nums) // Iterate to find count0 , count1 , count2 . Fill up the array accordingly . 
     {
         int count0 =0 ;
         int count1 =0 ;
