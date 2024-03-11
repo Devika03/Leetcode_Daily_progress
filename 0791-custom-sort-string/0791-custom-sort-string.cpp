@@ -12,4 +12,4 @@ public:
         return T;
     }
 };
-string Solution :: St;
+string Solution :: St;//Static variables have to be declared outside the class . 
