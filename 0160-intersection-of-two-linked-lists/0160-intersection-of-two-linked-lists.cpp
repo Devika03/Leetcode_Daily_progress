@@ -10,7 +10,36 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
     {
-        if (headA == NULL || headB ==NULL) return NULL;//means no intersection. 
+        // If either list is empty, return null
+        if (!headA || !headB) return NULL;
+        
+        unordered_set<ListNode*> s;
+        
+        ListNode* ptrA = headA;
+        ListNode* ptrB = headB;
+        
+        // Traverse list A and store each node in the set
+        while (ptrA!=NULL) {
+            s.insert(ptrA);
+            ptrA = ptrA->next;
+        }
+        
+        // Traverse list B and check if any node is in the set
+        while (ptrB!=NULL) {
+            if (s.find(ptrB) != s.end()) {
+                // Found intersection point
+                return ptrB; 
+            }
+            ptrB=ptrB->next;
+
+        }
+        
+        // No intersection found
+        return NULL;
+    }
+};
+/*
+if (headA == NULL || headB ==NULL) return NULL;//means no intersection. 
         ListNode*d1 = headA;
         ListNode*d2 = headB;
         
@@ -22,5 +51,4 @@ public:
         }
         return d1;//if d1==d2.
             
-    }
-};
+    */
