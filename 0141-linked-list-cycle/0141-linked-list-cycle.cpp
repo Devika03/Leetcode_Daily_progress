@@ -13,7 +13,7 @@ public:
         if(head==NULL|| head->next == NULL) return false ;
         ListNode*slow=head;
         ListNode*fast=head;
-        while(fast!=NULL && fast->next!=NULL)
+        while(fast!=NULL && fast->next!=NULL)// It should be &&
         {
             slow=slow->next;
             fast=fast->next->next;
@@ -23,20 +23,3 @@ public:
         return false;
     }
 };
-/*
-if(head==NULL|| head->next == NULL) return false ;//If NULL ll or single ele.
-        
-        ListNode *slow;
-        ListNode *fast;
-        slow=head;
-        fast=head;
-        
-        while(fast->next!=NULL && fast->next->next!=NULL)
-        {
-            fast=fast->next->next;
-            slow=slow->next;
-            if(fast==slow)return true;
-        }
-        return false; //If not a ll.
-        
-    */
