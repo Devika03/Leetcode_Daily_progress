@@ -12,10 +12,10 @@ public:
     
     ListNode *detectCycle(ListNode *head) 
     {
-        if(head==NULL|| head->next == NULL) return NULL ;
+        if(head==NULL|| head->next == NULL) return NULL ;// Corner case 
         ListNode*slow=head;
         ListNode*fast=head;
-        bool hasCycle = false; 
+        bool hasCycle = false;// Corner case 
         while(fast!=NULL && fast->next!=NULL)// It should be &&
         {
             slow=slow->next;
