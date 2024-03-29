@@ -12,7 +12,37 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) 
     {
-        if(head==NULL || head->next == NULL) return true;
+        stack<int>s;
+        ListNode*slow=head;
+        ListNode*fast=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            s.push(slow->val);
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+         if (fast != NULL) {
+            slow = slow->next;
+        }
+        while(slow!=NULL)
+        {
+            if(s.top()!=slow->val)
+                return false;
+            else
+            {
+                s.pop();
+                slow=slow->next;
+            }
+        }
+        if(s.empty())
+            return true ; 
+        return false;
+        
+        
+    }
+};
+/*
+if(head==NULL || head->next == NULL) return true;
         ListNode*slow=head;
         ListNode*fast=head;
         
@@ -44,6 +74,4 @@ public:
             head=next;
         }
         return pre;
-        
-    }
-};
+*/
