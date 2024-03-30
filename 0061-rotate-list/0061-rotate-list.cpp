@@ -54,7 +54,7 @@ public:
         }
         
         // Adjust k to avoid unnecessary rotations
-        k = k % len;
+        k = k % len; // Effective k if k = 4 and len = 3 , [0,1,2]
         if (k == 0) return head; // No rotation needed
         
         // Find the new head position
@@ -65,9 +65,9 @@ public:
         }
         
         // Perform the rotation
-        tail->next = head; // Connect the original tail to the original head to form a loop
-        head = newTail->next; // New head is the next node of newTail
-        newTail->next = NULL; // Set the new tail's next to NULL to break the loop
+        tail->next = head;
+        head = newTail->next; // New head 
+        newTail->next = NULL; 
         
         return head;
     }
