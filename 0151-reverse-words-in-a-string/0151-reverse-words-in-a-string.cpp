@@ -7,7 +7,7 @@ public:
         int i = 0;
         string result = "";
         while (i < len) {
-            while ( s[i] == ' ') {
+            while (s[i] == ' ') {
                 i++;
             }
             if (i >= len) break; // Exit loop if end of string is reached
@@ -22,7 +22,7 @@ public:
             } else {
                 result = word;
             }
-            i = j;
+            i = j+1 ;
         }
         return result;
     }
