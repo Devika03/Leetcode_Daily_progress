@@ -12,7 +12,7 @@ public:
             }
             if (i >= len) break; // Exit loop if end of string is reached
             //else
-            int j = i + 1;
+            int j = i;
             while (j < len && s[j] != ' ') {
                 j++;
             }
