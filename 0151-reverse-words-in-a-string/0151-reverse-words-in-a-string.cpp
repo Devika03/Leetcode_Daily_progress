@@ -6,13 +6,16 @@ public:
         int len = s.size();
         int i = 0;
         string result = "";
+        //Loop for the First word encounter.
         while (i < len) {
             while (s[i] == ' ') {
                 i++;
             }
+            //Now i is pointing to the first letter of the first word. 
             if (i >= len) break; // Exit loop if end of string is reached
             //else
             int j = i;
+            //Loop for End of the First word. 
             while (j < len && s[j] != ' ') {
                 j++;
             }
