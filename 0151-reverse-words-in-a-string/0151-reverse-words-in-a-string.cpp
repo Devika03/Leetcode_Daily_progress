@@ -1,6 +1,35 @@
+#include <string>
+
 class Solution {
 public:
     string reverseWords(string s) {
+        int len = s.size();
+        int i = 0;
+        string result = "";
+        while (i < len) {
+            while (i < len && s[i] == ' ') {
+                i++;
+            }
+            if (i >= len) break; // Exit loop if end of string is reached
+            
+            int j = i + 1;
+            while (j < len && s[j] != ' ') {
+                j++;
+            }
+            string word = s.substr(i, j - i);
+            if (!result.empty()) {
+                result = word + " " + result;
+            } else {
+                result = word;
+            }
+            i = j;
+        }
+        return result;
+    }
+};
+
+/*
+string reverseWords(string s) {
         string res = "";
         string temp = "";
 
@@ -22,4 +51,7 @@ public:
         }
         return res;
     }
-};
+*/
+
+/* 
+In conclusion, the equivalent function to Java's String trim() in C++ is the std::trim() function */
