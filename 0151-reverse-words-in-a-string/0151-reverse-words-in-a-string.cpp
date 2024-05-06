@@ -7,11 +7,11 @@ public:
         int i = 0;
         string result = "";
         while (i < len) {
-            while (i < len && s[i] == ' ') {
+            while ( s[i] == ' ') {
                 i++;
             }
             if (i >= len) break; // Exit loop if end of string is reached
-            
+            //else
             int j = i + 1;
             while (j < len && s[j] != ' ') {
                 j++;
