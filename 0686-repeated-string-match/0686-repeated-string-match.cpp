@@ -22,42 +22,37 @@ public:
         return -1;
     }
 };*/
-#include <string>
-
+#include<string.h>
 class Solution {
 public:
-    int repeatedStringMatch(string n1, string n2) {
-        string final_string = n1;
+    int repeatedStringMatch(string a, string b) 
+    {
+        string final_result = a;
         int count = 1;
-        int len_n1 = n1.size();
-        int len_n2 = n2.size();
+        int len_n1 = a.size();
+        int len_n2 = b.size();
+        
 
-        // Calculate the number of concatenations needed to ensure final_string has at least len_n2 characters
-        int numConcatenations = (len_n2 + len_n1 - 1) / len_n1;
-
-        // Concatenate n1 the required number of times
-        for (int i = 1; i < numConcatenations; i++) {
-            final_string += n1;
+        while(final_result.size()<len_n2)
+        {
+            final_result+=a;
             count++;
         }
 
-        // Check if n2 is a substring of final_string
-        if (final_string.find(n2) != string::npos) {
+        if(final_result.find(b)!= string::npos)//If found 
+        {
             return count;
         }
 
-        // If n2 is not a substring yet, concatenate n1 one more time
-        final_string += n1;
+        //If not yet , We still add 1 more . 
+        final_result+=a;
         count++;
-
-        if (final_string.find(n2) != string::npos) {
+        
+        if(final_result.find(b)!= string::npos)
+        {
             return count;
         }
-
-        // If still not found, return -1
+        
         return -1;
     }
 };
-
-
-
