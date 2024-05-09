@@ -32,9 +32,11 @@ public:
         int len_n1 = n1.size();
         int len_n2 = n2.size();
 
-        // Repeat n1 until the length is at least len_n2
-        while (final_string.size() < len_n2) 
-        {
+        // Calculate the number of concatenations needed to ensure final_string has at least len_n2 characters
+        int numConcatenations = (len_n2 + len_n1 - 1) / len_n1;
+
+        // Concatenate n1 the required number of times
+        for (int i = 1; i < numConcatenations; i++) {
             final_string += n1;
             count++;
         }
@@ -45,7 +47,6 @@ public:
         }
 
         // If n2 is not a substring yet, concatenate n1 one more time
-        // and check again
         final_string += n1;
         count++;
 
@@ -57,5 +58,6 @@ public:
         return -1;
     }
 };
+
 
 
