@@ -16,7 +16,7 @@ public:
         ans.push_back(stoi(temp));
         return ans;
     }*/
-    vector<int> splitString(const string& s, char delimiter) {
+    vector<int> splitString(string& s, char delimiter) {
         vector<int> result;
         stringstream ss(s);
         string token;
