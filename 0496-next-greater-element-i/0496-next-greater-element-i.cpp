@@ -21,7 +21,7 @@ public:
                         }
                     }
                     if (!flag) ans.push_back(-1);
-                    break;  // Once we find the current element, no need to continue the loop.
+                      // Once we find the current element, no need to continue the loop.
                 }
             }
         }
