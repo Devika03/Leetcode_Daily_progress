@@ -10,14 +10,46 @@
  * };
  */
 class Solution {
-    int helper(TreeNode* root){
-        if(root==NULL) return 0;
-        if(!root->left) return 1+helper(root->right);
-        else if(!root->right) return 1+helper(root->left);
-        return min(helper(root->left),helper(root->right))+1;
-    }
 public:
-    int minDepth(TreeNode* root) {
-        return helper(root);
+    int minDepth(TreeNode* root) 
+    {
+        if (root == nullptr) return 0;
+        
+        queue<TreeNode*> q;
+        
+        q.push(root);
+        int depth = 1;
+        
+        while (!q.empty()) 
+        {
+            int level_size = q.size(); // Number of nodes at the current level
+            
+            for (int i = 0; i < level_size; i++ ) 
+            {
+                TreeNode* node = q.front();
+                q.pop();
+                
+                // Check if this is a leaf node
+                if (node->left == NULL && node->right == NULL) 
+                {
+                    return depth;
+                }
+                
+                // Add the children nodes to the queue
+                if (node->left != NULL) 
+                {
+                    q.push(node->left);
+                }
+                if (node->right != NULL) 
+                {
+                    q.push(node->right);
+                }
+            }
+            
+            // Increment depth after processing all nodes at the current level
+            depth++;
+        }
+        
+        return depth;
     }
 };
