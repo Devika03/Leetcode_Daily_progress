@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-public:
+public:/*
     void helper(TreeNode* node , vector<vector<int>>&ans)
     {
         if(node==NULL)return;
@@ -42,4 +42,20 @@ public:
         helper(root,result);
         return result.size();
     }
+};*/
+    
+    
+    
+    
+    int maxDepth(TreeNode* node)
+{
+    // base case tree is empty
+    if (node == NULL)
+        return 0;
+ 
+    // If tree is not empty then
+    // height = 1 + max of left height
+    // and right heights
+    return 1 + max(maxDepth(node->left), maxDepth(node->right));
+}
 };
