@@ -93,11 +93,14 @@ public:
         
         return -1;
     }
-
-    bool search(vector<int>& nums, int target) {
-        int result = search_prev(nums, target);
-        return result != -1;
+    bool search(vector<int>& nums, int target) 
+    {
+        int result = search_prev(nums,target);
+        if(result==-1) return false;
+        else return true;
+        
     }
+    
 };
 
 
