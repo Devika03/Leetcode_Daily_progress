@@ -7,7 +7,8 @@ public:
         
         while (low < high) 
         {
-            int mid = low + (high - low) / 2;
+            // int mid = (low + high) / 2; Not Working 
+            int mid = low + (high - low) / 2; // Use this alternative to avoid OF.
 
             if (nums[mid] < nums[high]) 
             {
