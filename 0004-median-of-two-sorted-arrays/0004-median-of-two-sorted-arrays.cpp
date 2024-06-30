@@ -1,8 +1,62 @@
-class Solution 
-{
+class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
-    {
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int n1=nums1.size();
+        int n2=nums2.size();
+        
+        int count_ptr=0;
+        
+        int i=0,j=0;
+        
+        int n=n1+n2;
+        
+        int mid_right=n/2;
+        int mid_left=mid_right-1;
+        
+        int val1_at_mid_right=-1,val2_at_mid_left=-1;
+        
+        while(i<n1 && j<n2)
+        {
+            if(nums1[i]<nums2[j])
+            {
+                if(count_ptr==mid_left)val1_at_mid_right=nums1[i];
+                if(count_ptr==mid_right)val2_at_mid_left=nums1[i];
+                count_ptr++;
+                i++;
+            }
+            else{
+                if(count_ptr==mid_left)val1_at_mid_right=nums2[j];
+                if(count_ptr==mid_right)val2_at_mid_left=nums2[j];
+                count_ptr++;
+                j++;
+            }
+            
+        }
+        while (i < n1) {
+        if (count_ptr == mid_left)val1_at_mid_right = nums1[i];
+        if (count_ptr == mid_right)val2_at_mid_left = nums1[i];
+        count_ptr++;
+        i++;
+    }
+    while (j < n2) {
+        if (count_ptr == mid_left)val1_at_mid_right = nums2[j];
+        if (count_ptr == mid_right)val2_at_mid_left = nums2[j];
+        count_ptr++;
+        j++;
+    }
+    if(n%2==0){
+        return (double)(val1_at_mid_right+val2_at_mid_left)/2;
+    }else{
+        return val2_at_mid_left;
+    }
+
+        return -1;
+    }
+};
+
+/*
+Naive Approach : 
+{
         double median = 0;
         vector<int>result;
         for(int i = 0 ; i<nums1.size() ; i++)
@@ -31,58 +85,4 @@ public:
         }
         
     }
-};
-
-
-
-// class Solution 
-// {
-// public:
-//     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
-//     {
-//         vector<int> result;
-//         int i = 0, j = 0;
-        
-//         // Merge the 2 sorted arrays into the result vector
-//         while (i < nums1.size() && j < nums2.size()) 
-//         {
-//             if (nums1[i] < nums2[j]) 
-//             {
-//                 result.push_back(nums1[i]);
-//                 i++;
-//             } 
-//             else 
-//             {
-//                 result.push_back(nums2[j]);
-//                 j++;
-//             }
-//         }
-        
-//         // Append any remaining elements from nums1
-//         while (i < nums1.size()) 
-//         {
-//             result.push_back(nums1[i]);
-//             i++;
-//         }
-        
-//         // Append any remaining elements from nums2
-//         while (j < nums2.size()) 
-//         {
-//             result.push_back(nums2[j]);
-//             j++;
-//         }
-        
-        
-//         int n = result.size();
-        
-        
-//         if (n % 2 == 0) 
-//         {
-//             return (result[n/2 - 1] + result[n/2]) / 2.0;
-//         } 
-//         else 
-//         {
-//             return result[n/2];
-//         }
-//     }
-// };
+    */
