@@ -3,6 +3,11 @@ public:
 
     bool solve(int index1,int index2,string s,string p,vector<vector<int>>&dp)
     {
+        //Hello 
+        //This
+        //is
+        //a
+        //code
         if(index1<0 && index2<0)
         {
             return true;
