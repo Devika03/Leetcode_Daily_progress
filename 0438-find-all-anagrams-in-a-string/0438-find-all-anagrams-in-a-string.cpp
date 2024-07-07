@@ -1,42 +1,55 @@
 class Solution {
 public:
-    vector<int> findAnagrams(string s, string p)
-    {
+
+    // same problem as "Count occurences of anagrams"
+
+    vector<int> findAnagrams(string s, string p) {
+        int i = 0, j = 0;
+        int k = p.length();
+        unordered_map<char, int> map;
         vector<int>ans;
         
-        vector<int>hash(26,0);
-        vector<int>p_hash(26,0);
-        
-        int size_s=s.size();
-        int size_p=p.size();
-        
-        if(size_s<size_p) return ans;
-        
-        int start=0 ; int end = 0 ; 
-        while(end<size_p)
-        {
-            p_hash[p[end]-'a']++;
-            hash[s[end]-'a']++;
-            
-            end++;
+        // creating a "count map" from pattern
+        for (int i = 0; i < k; i++) {
+            map[p[i]]++;
         }
-        end--;
         
-        while(end<size_s)
-        {
-            if(p_hash==hash) ans.push_back(start);
-            end++;
-            if(end!=size_s) hash[s[end]-'a']++;
+        int count = map.size(); // Keeps track of distinct letters
+        int n = s.length();
+        
+        while (j < n) {
+            char ch = s[j];
+            if (map.find(ch) != map.end()) {
+                map[ch]--;
+                if (map[ch] == 0) {
+                    count--;
+                }
+            }
             
-            hash[s[start]-'a']--;
-            start++;
+            if (j - i + 1 < k) {
+                j++;
+            } else if (j - i + 1 == k) {
+                if (count == 0) {
+                    ans.push_back(i);
+                }
+                if (map.find(s[i]) != map.end()) {
+                    map[s[i]]++;
+                    if (map[s[i]] == 1) {
+                        count++;
+                    }
+                }
+                i++;
+                j++;
+            }
         }
+        
         return ans;
     }
 };
 
 
-//TLE :-
+
+// TLE :-
 //  bool isAnagram(string s, string t) //t , s .
 //     {
 //         if(s.size()<t.size()) return false;
