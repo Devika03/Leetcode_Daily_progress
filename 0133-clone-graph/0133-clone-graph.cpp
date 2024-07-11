@@ -24,7 +24,8 @@ public:
 
 class Solution {
 public:
-    Node* cloneGraph(Node* node) {
+    Node* cloneGraph(Node* node) 
+    {
         if (!node) return nullptr;
 
         unordered_map<Node*, Node*> visited;
@@ -39,7 +40,8 @@ public:
             Node* currNode = q.front();
             q.pop();
 
-            for (Node* neighbor : currNode->neighbors) {
+            for (Node* neighbor : currNode->neighbors) 
+            {
                 if (visited.find(neighbor) == visited.end()) {
                     // Clone the neighbor node and store it in visited map
                     temp = new Node(neighbor->val);
@@ -52,5 +54,9 @@ public:
         }
 
         return visited[node];
+
     }
 };
+
+
+
