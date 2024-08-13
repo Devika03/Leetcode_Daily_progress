@@ -52,33 +52,41 @@
 
 
 
-class Solution {
+class Solution 
+{
 public:
-    bool BFS(vector<vector<int>>& graph, int source, vector<int>& color) {
+    bool BFS(vector<vector<int>>& graph, int source, vector<int>& color) 
+    {
         int col_1 = 0; 
         int col_2 = 1;
+        bool is_Bip = true;
         
         queue<int> q;
         q.push(source);
         color[source] = col_1;
         
-        while (!q.empty()) {
+        while (!q.empty()) 
+        {
             int element = q.front();
             q.pop();
             
-            for (auto it : graph[element]) {
-                if (color[it] == -1) {
-                    // If the adjacent node is not colored, assign it the opposite color
-                    color[it] = 1 - color[element];
+            for (auto it : graph[element]) 
+            {
+                if (color[it] == -1)// if ( visited[it]== 0 ) 
+                {
+                    
+                    color[it] = 1 - color[element];//Convert from 0 to 1  , 1 to 0 . 
                     q.push(it);
-                } else if (color[it] == color[element]) {
-                    // If the adjacent node has the same color, the graph is not bipartite
-                    return false;
+                } 
+                else if (color[it] == color[element])
+                {
+                    is_Bip = false;
+                    break;
                 }
             }
         }
         
-        return true;
+        return is_Bip;
     }
     
     bool isBipartite(vector<vector<int>>& graph) {
