@@ -1,9 +1,9 @@
 class Solution(object):
     def maxSubArray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+        # """
+        # :type nums: List[int]
+        # :rtype: int
+        # """
         current_sum = 0
         overall_max_sum = float('-inf')
         
